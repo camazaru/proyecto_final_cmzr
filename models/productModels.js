@@ -8,7 +8,7 @@ const productSchema = new Schema({
   stock: { type: Number, required: true },
 });
 
-const Product = model("product", productSchema);
+const productModel = model("product", productSchema);
 
-export default Product;
+export const Product = productModel;
 

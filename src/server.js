@@ -1,17 +1,19 @@
 import express, { application } from 'express'
 import session from "express-session"
 import compression from 'compression'
-import { WSresponse } from "../libs/WSresponse.js";
 //import passport from 'passport';
 import bodyParser from "body-parser"
 //import os from "os";
-import path from "path"                                //Normalizar Rutas
-//import datosLogin from '../Strategy/loginStrategy.js'
 import { json } from "express";
-import config from './config.js';                      // 
-import connectDB from './controllersdb.js'
+import path from "path"                                //Normalizar Rutas
 import {fileURLToPath} from 'url';                     //Normalizar Rutas
 import { url } from 'inspector';
+//import datosLogin from '../Strategy/loginStrategy.js'
+import { WSresponse } from "../libs/WSresponse.js";
+import config from './config.js';                      // 
+import connectDB from './controllersdb.js'
+
+import router from '../routes/indexRoutes.js'
 
 const __filename = fileURLToPath(import.meta.url);     //Normalizar Rutas
 const __dirname = path.dirname(__filename);            //Normalizar Rutas
@@ -21,7 +23,7 @@ const port = process.env.PORT || 5000
 
 app.use(express.static('public'))
 
-//app.use(json());
+app.use(json());
 
 function print(objeto)
 {
@@ -42,19 +44,13 @@ app.use(compression())
 app.use(express.static(path.join(__dirname, '../views')))
 app.use(express.json());
 
-// Usar Rutas
 
-app.get("/", (req, res) => {
-res.render("index")
-})
-
-app.get("/products", (req, res) => {
-
-
-})
 
 //***********************************************************************************************************
-import Users from "../models/userModels.js";
+// Usar Rutas
+app.use("/", router)
+
+
 
 
 

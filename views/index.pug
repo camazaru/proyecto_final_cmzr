@@ -1,22 +1,6 @@
-html(lang="en")
-	head
-		meta(charset="UTF-8")
-		meta(name="viewport", content="width=device-width, initial-scale=1.0")
-		title Ecommerce 
-		link(rel="stylesheet", href="estilos.css")
-	body
-		.form
-			h2 Ingresa tus datos
+extends ./layout
 
-			//- feedback_form POST route
-			form(action="/feedback_form",method="POST")
-				label(for="email") Ingresa tu email
-				input#email(type="email", name="email")
-				label(for="password") Ingresa tu password
-				input#password(type="text", name="password")
-				label(for="direccion") Ingresa tu direccion
-				input#direccion(type="text", name="direccion")
-				label(for="avatar") Selecciona avatar
-				input#avatar(type="file", name="avatar")
-                
-				button(type="submit") Submit
+block prueba
+  h1 Lista de productos
+
+  

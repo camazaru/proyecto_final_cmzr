@@ -14,10 +14,48 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+
+const createProduct = async (req, res) => {
+  try {
+    const response = await productService.createProduct(req.body);
+
+    res.json(new WSresponse(response, "Product created"));
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(new WSresponse(null, err, true, 400));
+  }
+};
+
+const updateProduct = async (req, res) => {
+  try {
+    const response = await productService.updateProduct(
+      req.body,
+      req.params.id
+    );
+
+    res.json(new WSresponse(response, "Product updated"));
+  } catch (err) {
+    console.log(err);
+    res.json(new WSresponse(null, err, true, 489));
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  try {
+    await productService.deleteProduct(req.params.id);
+
+    res.json(new WSresponse(null, "Product deleted"));
+  } catch (err) {
+    console.log(err);
+    res.json(new WSresponse(null, err, true, 320));
+  }
+};
+
+
 export default {
-    getAllProducts
-    //createProduct,
+    getAllProducts,
+    createProduct,
     //getOneProduct,
-    //updateProduct,
-    //deleteProduct,
+    updateProduct,
+    deleteProduct,
   };

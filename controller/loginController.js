@@ -1,6 +1,6 @@
 const loginController = (req, res) => {
 
-    res.render("index")
+    res.render("indexLogin")
 }
 
 export default loginController

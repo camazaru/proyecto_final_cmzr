@@ -1,36 +1,37 @@
-import CartModel from '../models/cartModels.js'
+import {Cart} from '../models/cartModels.js'
+
+const createCart = async (cartToCreate) => {
+  const createdCart = await Cart.create(cartToCreate);
+  return createdCart;
+};
 
 
-const getCart = async({userID,ProductID}) =>{
-    const data = await CartModel.find({ userID: userID},{ products: 1, _id: 0 })  
+const getCart = async({userId, productId}) =>{
+    const data = await CartModel.find({ userId: userId},{ products: 1, _id: 0 })  
     return data
 }
 
-const getCartUserID = async (req) => {
-  const userID = req.userID
-  const ProductExist = await CartModel.find({ userID: userID})
+const getCartUserId = async (req) => {
+  const userId = req.userId
+  const ProductExist = await CartModel.find({ userId: userId})
 
   return ProductExist
+}
+
+
+const updateCartId = async (req) => {
+  const userId = req.userId
+  const products = req.products
+  const updateProductsCart = await CartModel.updateOne({ userId: userId},{ $set: { products : products }})
+
+  return updateProductsCart
 
 }
 
-const updateCartID = async (req) => {
-  const userID = req.userID
-  const product = req.product
-  const UpdateProductCart = await CartModel.updateOne({ userID: userID},{ $set: { product : product }})
-
-  return UpdateProductCart
-
-}
-
-const createCart = async(req) =>{
-  const data = await CartModel.create(req)  
-  return data
-}
-
-  export default {
-    getCartUserID,
-    updateCartID,
+export const cartDao = {
+    getCartUserId,
+    updateCartId,
     getCart,
     createCart
   }
+

@@ -2,13 +2,11 @@ import { User } from "../models/userModels.js";
 
 const createUser = async (userToCreate) => {
   const createdUser = await User.create({ ...userToCreate, role: "USER" });
-
   return createdUser;
 };
 
 const getUserById = async (userId) => {
   const user = await User.findById(userId);
-
   return user;
 };
 

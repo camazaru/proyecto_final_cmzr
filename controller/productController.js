@@ -18,7 +18,6 @@ const getAllProducts = async (req, res) => {
 const createProduct = async (req, res) => {
   try {
     const response = await productService.createProduct(req.body);
-
     res.json(new WSresponse(response, "Product created"));
   } catch (err) {
     console.log(err);
@@ -51,11 +50,21 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const getOneProduct = async (req, res) => {
+  try {
+    const response = await productService.getOneProduct(req.params.id);
 
-export default {
+    res.json(new WSresponse(response, "Succes"));
+  } catch (err) {
+    console.log(err);
+    res.json(new WSresponse(null, err, true, 460));
+  }
+};
+
+export const productController = {
     getAllProducts,
     createProduct,
-    //getOneProduct,
+    getOneProduct,
     updateProduct,
     deleteProduct,
   };

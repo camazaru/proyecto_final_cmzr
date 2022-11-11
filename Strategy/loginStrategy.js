@@ -11,8 +11,6 @@ function isvalidpassword(reqPassword,dbPassword){
     return bcrypt.compareSync(reqPassword,dbPassword)
 }
 
-
-
 const loginStrategy = new LocalStrategy(async (username,password,done)=>{
     try{
         const user = await controllers.LoginController.Login({username})

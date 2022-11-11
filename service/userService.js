@@ -1,16 +1,16 @@
-import { userDao } from "../dao/userDao";
+import { userDao } from "../dao/userDao.js";
 
-const createUser = async ({ username, password, email }) => {
-  if (typeof username !== "string")
-    throw "El nombre de usuario debe ser un string";
-
-  if (typeof password !== "string") throw "La contraseña debe ser un string";
-
-  if (typeof email !== "string") throw "El email debe ser un string";
-
-  await userDao.createUser({ username, password, email });
-
-  return { username, email };
+const createUser = async ({ username, email, password, address, avatar }) => {
+  await userDao.createUser({ username, email, password, address, avatar });
+  return { username, email, password, address, avatar };
 };
 
-export const userService = { createUser };
+const getUserById = async(userId) =>{
+
+  const user = await userDao.getUserById(userId);
+  //console.log("datos usuario service", data)
+  return user
+
+}
+
+export const userService = { createUser, getUserById };

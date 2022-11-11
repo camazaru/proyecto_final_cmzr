@@ -11,7 +11,7 @@ html(lang="en")
 			//- feedback_form POST route
 			form(action="/feedback_form",method="POST")
 				label(for="nickname") Ingresa tu nickname
-
+				input#nickname(type="text", name="nickname")
 				label(for="email") Ingresa tu email
 				input#email(type="email", name="email")
 				label(for="password") Ingresa tu password

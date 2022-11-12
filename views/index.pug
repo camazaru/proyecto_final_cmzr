@@ -1,6 +1,44 @@
 extends ./layout
 
-block prueba
-  h1 Lista de productos
+block login
+    h1 Ingresa tus datos para acceder a la pagina
+    form(action="/accesslogin",method="POST", )
+    label(for="email" autocomplete="off") Ingresa tu email
+    input#email(type="email", name="email")
+    label(for="password" autocomplete="off") Ingresa tu password
+    input#password(type="text", name="password")
+    br    
+    button(type="submit") Submit
+
+block register
+    h1 Ingresa tus datos para realizar registro
+    form(action="/register",method="POST")
+    label(for="nickname" autocomplete="off") Ingresa tu nickname
+    input#nickname(type="text", name="nickname")
+    label(for="email" autocomplete="off") Ingresa tu email
+    input#email(type="email", name="email")
+    label(for="password" autocomplete="off") Ingresa tu password
+    input#password(type="text", name="password")
+    label(for="direccion" autocomplete="off") Ingresa tu direccion
+    input#direccion(type="text", name="direccion")
+    br
+    label(for="avatar") Selecciona avatar
+    input#avatar(type="file", name="avatar")
+    br           
+    button(type="submit") Submit
+
+block product
+    h1 List of products
+    ul.list-products.list-unstyled
+    li
+    img
+    span #{product.productName}
+    span.price #{product.price}€
+    form.add-to-cart-ajax(action="/cart-ajax", method="POST")
+    label(for="quantity") Quantity
+    input(name="quantity", id="quantity", min="1", type="number", value="0")
+    input(name="id", value=product.id, type="hidden")
+    button.btn.btn-primary Add To Cart
+    
 
   

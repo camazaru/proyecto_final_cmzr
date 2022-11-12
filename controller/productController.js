@@ -4,7 +4,8 @@ import { productService } from "../service/productService.js";
 const getAllProducts = async (req, res) => {
   try {
     const response = await productService.getAllProducts();
-    res.json(new WSresponse(response, "Success"));
+    res.render("layout", {ProductosDB:response} );
+    //res.json(new WSresponse(response, "Success"));
 
   } catch (err) {
     console.log(err);

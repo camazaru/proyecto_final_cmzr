@@ -8,17 +8,11 @@ html(lang="en")
 		.form
 			h2 Ingresa tus datos
 
-			//- feedback_form POST route
 			form(action="/feedback_form",method="POST")
-				label(for="nickname") Ingresa tu nickname
-				input#nickname(type="text", name="nickname")
 				label(for="email") Ingresa tu email
 				input#email(type="email", name="email")
 				label(for="password") Ingresa tu password
 				input#password(type="text", name="password")
-				label(for="direccion") Ingresa tu direccion
-				input#direccion(type="text", name="direccion")
-				label(for="avatar") Selecciona avatar
-				input#avatar(type="file", name="avatar")
-                
+
+           
 				button(type="submit") Submit

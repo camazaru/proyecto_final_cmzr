@@ -7,5 +7,6 @@ const loginRoute= Router();
 loginRoute
   .route("/")
   .get(loginController)
+  .post(loginController)
 
 export default loginRoute;

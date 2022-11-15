@@ -3,11 +3,10 @@ import {userController} from "../controller/indexController.js";
 
 const router = Router();
 
-router.route("/").post(userController.createUser);
+router.post("/", userController.createUser);
+router.get("/:id", userController.getUserById);
 
-router
-  .route("/:id")
-  .get(userController.getUserById)
+
 
 export default router;
 

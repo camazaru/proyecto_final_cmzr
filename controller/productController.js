@@ -4,8 +4,9 @@ import { productService } from "../service/productService.js";
 const getAllProducts = async (req, res) => {
   try {
     const response = await productService.getAllProducts();
-    res.render("layout", {ProductosDB:response} );
+    
     //res.json(new WSresponse(response, "Success"));
+    res.render("indexProducts", {ProductosDB:response[0].Productos, Categorias:response[0].Categorias} );
 
   } catch (err) {
     console.log(err);
@@ -14,6 +15,22 @@ const getAllProducts = async (req, res) => {
       .json(new WSresponse(null, "Internal server error", true, 500));
   }
 };
+
+/*  
+const getAllProducts = async (req, res) => {
+  try {
+    const response = await productService.getAllProducts();
+
+    res.json(new WSresponse(response, "Succes"));
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json(new WSresponse(null, "Internal server error", true, 500));
+  }
+};
+*/
+
 
 
 const createProduct = async (req, res) => {

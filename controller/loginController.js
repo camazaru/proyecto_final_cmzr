@@ -3,7 +3,7 @@ import {userService} from "../service/userService.js";
 
 const loginController = (req, res) => {
 
-    res.render("indexLogin")
+    res.render("indexLogin.pug")
 }
 
 export default loginController

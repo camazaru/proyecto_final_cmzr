@@ -1,8 +1,15 @@
+//import { accessController } from "./accessController.js";
+//import { cartController } from "./cartController.js";
+//import {chatController} from "./chatController.js";
+//import {orderController} from "./orderController.js";
 import {productController} from "./productController.js";
-import loginController from "./loginController.js"
-import userLoggedController from "./userLoggedController.js"
-import {userController} from "./userController.js";
-import { cartController } from "./cartController.js";
+//import {userController} from "./userController.js";
 
 
-export { productController, loginController, userLoggedController, userController, cartController };
+export { //accessController, 
+         //cartController, 
+         //chatController, 
+         //orderController,
+         productController,
+         //userController,
+};

@@ -10,4 +10,6 @@ const getUserById = async (userId) => {
   return user;
 };
 
+
+
 export const userDao = { createUser, getUserById };

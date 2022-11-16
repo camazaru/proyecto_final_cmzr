@@ -11,70 +11,11 @@ const createCart = async (req, res) => {
     }
   };
 
-
-
-/*
-const getOneCart = async (req, res) => {
-    try {
-      const response = await cartService.getOneCart(req.params.id);
-  
-      res.json(new WSresponse(response, "Succes"));
-    } catch (err) {
-      console.log(err);
-      res.json(new WSresponse(null, err, true, 460));
-    }
-  };
-*/
-
-/*
-  const updateCart = async (req, res) => {
-    try {
-      const response = await cartService.updateCart(
-        req.body,
-        req.params.id
-      );
-      res.json(new WSresponse(response, "Product updated"));
-    } catch (err) {
-      console.log(err);
-      res.json(new WSresponse(null, err, true, 489));
-    }
-  };
-*/
-
-/*
-  const deleteCart = async (req, res) => {
-    try {
-      await cartService.deleteCart(req.params.id);
-  
-      res.json(new WSresponse(null, "Cart deleted"));
-    } catch (err) {
-      console.log(err);
-      res.json(new WSresponse(null, err, true, 320));
-    }
-  };
-*/
-
-
 export const cartController = {
-    //getCarrito,
-    createCart,
-    //getOneCart,
-    //updateCart,
-    //deleteCart
+  createCart,
 }
 
 /*
-export default {
-    getCarritoID,
-    getCarrito,
-    
-}
-*/
-
-
-/*
-
-simon
 import carritoService from "../service/carrito.service.js";
 import productosService from "../service/product.service.js";
 
@@ -91,7 +32,7 @@ const getCarrito = async (req, res) => {
     }
     //console.log(SumaCarrito)
     //res.json({ProductosDB:response,SumaCarrito});
-    res.render("carrito", {ProductosDB:response,SumaCarrito} );
+    res.render("carrito", {ProductosDB:response,SumaCarrito, usuariolog: idusuario} );
     //res.json({ProductosDB:response,SumaCarrito});
 
   } catch (err) {
@@ -105,10 +46,10 @@ const getCarrito = async (req, res) => {
 
 const createCarrito = async (req, res) => {
   try {
-    //console.log("aqui el body",req.body )
-    const response = await carritoService.createCarrito(req.body);
+    //console.log("aqui el body",req )
+    const response = await carritoService.createCarrito(req);
 
-    res.status(201).json(response);
+    return response
   } catch (err) {
     console.log(err);
     if (err.statusCode) {
@@ -135,12 +76,11 @@ try {
     {
       filters = { _id: idproduct }
         const productonew = await productosService.getProductByFilters(filters)          
-        //console.log("datos de productos  modificar",response[0])
         response[0].productos.push({
-          productoid: productonew[0]._id.toString(),
-          thumbnail: productonew[0].thumbnail,
-          name: productonew[0].name,
-          price: productonew[0].price,
+          productoid: productonew[0].Productos[0].id,
+          thumbnail: productonew[0].Productos[0].thumbnail,
+          name: productonew[0].Productos[0].name,
+          price: productonew[0].Productos[0].price,
           qry: 1
         })  
     }
@@ -166,7 +106,35 @@ try {
   }
 };
 
-export default { getCarrito, createCarrito, getOneProductCarrito };
+const deleteProductCarrito = async (req, res) => {
+  try {
+    const { idusuario,idproduct } = req.params
+    let filters = { usuarioid: idusuario };
+    const response = await carritoService.getCarritoByFilters(filters);
+    const indexDatos = response[0].productos.findIndex(object => {
+      return object.productoid === idproduct;
+    });
+    response[0].productos.splice(indexDatos,1)
+    const UpdateProductosCarrito = await carritoService.UpdateCarritoProductByFilters({idusuario,productos : response[0].productos})
+    let ContadorProductos = 0
+    for(let i=0; i < response[0].productos.length; i++)
+    {
+      ContadorProductos += response[0].productos[i].qry
+    }
+    res.json({numeroProductos: ContadorProductos});
 
 
+  } catch (err) {
+    console.log(err);
+    if (err.statusCode) {
+      return res.status(statusCode).send(err);
+    }
+
+    res.sendStatus(500);
+  }
+};
+
+
+
+export default { getCarrito, createCarrito, getOneProductCarrito,deleteProductCarrito};
 */

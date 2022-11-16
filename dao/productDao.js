@@ -18,7 +18,7 @@ const updateProduct = async (updateData, productId) => {
   return updatedProduct;
 };
 
-const delteProduct = async (productId) => {
+const deleteProduct = async (productId) => {
   await Product.deleteOne({ _id: productId });
 };
 
@@ -32,6 +32,6 @@ export const productDao = {
     getAllProducts,
     createProduct,
     updateProduct,
-    delteProduct,
+    deleteProduct,
     getProductById
   };

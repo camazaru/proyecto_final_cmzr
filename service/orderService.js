@@ -3,11 +3,8 @@
 
 
 
-
-
-
 /*
-simon
+archivo viejo
 
 import Orden from "../models/orden.model.js";
 import Carrito from "../models/carrito.model.js";

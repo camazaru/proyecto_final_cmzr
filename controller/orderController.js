@@ -5,8 +5,7 @@
 
 
 
-//archivo simon
-
+//archivo nuevo
 //import logger from '../src/winstonconfig.js';
 import carritoService from "../service/carrito.service.js";
 import ordenService from "../service/orden.service.js";
@@ -75,7 +74,22 @@ const createOrden = async(req, res)=>{
 
     //console.log("datos a usar para el correo:", mailOptions)
 }
-export default {
-    createOrden
-}
+const datosOrden = async(req, res)=>{
+        const { idusuario } = req.params
+        let filters = { usuarioid: idusuario };
+        const responseProductos = await carritoService.getCarritoProductByFilters(filters)
+        const arrayProductos = responseProductos
 
+        let ContadorProductos = 0
+        for(let i=0; i < arrayProductos.length; i++)
+        {
+          ContadorProductos += arrayProductos[i].qry
+        }
+        res.json({numeroProductos: ContadorProductos});
+    
+        //console.log("datos a usar para el correo:", mailOptions)
+    }
+export default {
+    createOrden,
+    datosOrden
+}

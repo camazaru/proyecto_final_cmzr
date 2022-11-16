@@ -143,3 +143,23 @@ block register
 
 block product
     h1 Lista de productos
+
+
+
+table.table.table-striped
+    tr
+    th Name
+    th Price
+    th thumbnail
+    th category
+    th descripcion
+    th stock
+
+
+    each n in Products
+  tr
+    td= n.name
+    td= n.price
+    td= n.thumbnail
+    td= n.category
+    td= n.description

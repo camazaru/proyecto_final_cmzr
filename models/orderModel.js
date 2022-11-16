@@ -1,19 +1,13 @@
-
-
-
-
-/*
-simon
-
 import { Schema, model } from "mongoose";
-
-const ordenSchema = new Schema({
-  usuarioid: { type: String, required: true },
-  productos: { type: Array, required: true },
-  fechaCreacion: { type : Date, default: Date.now },
-  status: { type: String, required: true,default: 'generada' }
+ 
+const orderSchema = new Schema({
+    userId: { type: String, required: true },
+    products: { type: String, required: true },
+    creationDate: { type : Date, default: Date.now },
+    status: { type: String, required: true, default: 'generated' }
 });
 
-export default model("orden", ordenSchema);
+const orderModel = model("order", orderSchema);
 
-*/
+
+export const order = orderModel;

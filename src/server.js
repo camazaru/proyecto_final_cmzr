@@ -13,7 +13,7 @@ import { WSresponse } from "../libs/WSresponse.js";
 import config from './config.js';                      // 
 import connectDB from './controllersdb.js'
 
-import router from '../routes/indexRoutes.js'
+import router from '../routes/indexRoute.js'
 
 const __filename = fileURLToPath(import.meta.url);     //Normalizar Rutas
 const __dirname = path.dirname(__filename);            //Normalizar Rutas
@@ -83,7 +83,8 @@ console.log(`Server listening on port ${port}`)
 
 /*
 
-simon
+archivo viejo
+
 import express, { json } from "express";
 import session from "express-session"
 import mongoose from "mongoose";
@@ -94,29 +95,33 @@ import path from 'path';
 import {fileURLToPath} from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+import compression from 'compression'
 import datosLogin from './components/LoginStategy.js'
 import passport from 'passport';
 
 const app = express();
 
 app.use(json());
+app.use(compression())
+app.use(express.urlencoded({ extended: true }));
 app.use(session({
-  secret: 'coderhouse',
+  secret: config.apisecret,
   resave: false,
   saveUninitialized: false,
   rolling: true,
   cookie:{
       httpOnly:false,
       secure: false,
-      maxAge: config.tiemposession,
+      maxAge: config.tiemposession
   }
 }))
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use('register',datosLogin.registerStrategy)
 passport.use('login',datosLogin.loginStrategy)
+
 passport.serializeUser((user,done)=>{
-    done(null,user._id)
+    done(null,user.id)
 })
 
 passport.deserializeUser((id,done)=>{
@@ -149,5 +154,6 @@ mongoose.connect(config.dbUrl).then(() => {
     console.log(`Server listening host http://localhost:${config.port}`);
   });
 });
+
 
 */

@@ -3,7 +3,7 @@
 //import {chatController} from "./chatController.js";
 //import {orderController} from "./orderController.js";
 import {productController} from "./productController.js";
-//import {userController} from "./userController.js";
+import {userController} from "./userController.js";
 
 
 export { //accessController, 
@@ -11,5 +11,5 @@ export { //accessController,
          //chatController, 
          //orderController,
          productController,
-         //userController,
+         userController,
 };

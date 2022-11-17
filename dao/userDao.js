@@ -5,11 +5,16 @@ const createUser = async (userToCreate) => {
   return createdUser;
 };
 
+const getUserByMail = async (mail) => {
+  const user = await User.findById(mail);
+  return user;
+};
+
 const getUserById = async (userId) => {
   const user = await User.findById(userId);
+
   return user;
 };
 
 
-
-export const userDao = { createUser, getUserById };
+export const userDao = { createUser, getUserByMail, getUserById };

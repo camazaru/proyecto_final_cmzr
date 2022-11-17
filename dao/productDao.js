@@ -28,10 +28,24 @@ const getProductById = async (productId) => {
   return product;
 };
 
+/*
+const getProductByCategory = async (category) => {
+  const product = await Product.category.findByCategory({category});
+
+  return product;
+};
+*/
+
+const getProductByCategory = async (category) => {
+  const Products = await Product.find({category});
+  return Products;
+};
+
 export const productDao = {
     getAllProducts,
     createProduct,
     updateProduct,
     deleteProduct,
-    getProductById
+    getProductById,
+    getProductByCategory
   };
